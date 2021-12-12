@@ -27,3 +27,8 @@ sudo python3 dnsserver.py
 ```
 
 Default webserver port: 8443
+
+Credits
+---------------
+Chen Zhaojun of Alibaba for discovering the vulnerability (CVE-2021-44228)
+
