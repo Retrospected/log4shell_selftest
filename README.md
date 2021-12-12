@@ -13,7 +13,7 @@ ns.dnsexample.com. A <ip of your server>
 log4shell.dnsexample.com. NS ns.dnsexample.com.
 ```
 
-Additionally this tool requires TLS certificates in order to be used, use LetsEncrypt and provide your "/etc/letsencrypt/live/<domain>" path.
+Additionally this tool requires TLS certificates in order to be used, use LetsEncrypt and provide your "/etc/letsencrypt/live/\<domain\>/" path.
 
 Quick Start
 ---------------

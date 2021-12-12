@@ -124,8 +124,8 @@ if __name__ == "__main__":
     PORT = 8443
     my_server = socketserver.TCPServer(("", PORT), handler_object)
 
-    ssl_key_file = sys.argv[2]+"privkey.pem"
-    ssl_cert_file = sys.argv[2]+"fullchain.pem"
+    ssl_key_file = sys.argv[2]+"/privkey.pem"
+    ssl_cert_file = sys.argv[2]+"/fullchain.pem"
 
     my_server.socket = ssl.wrap_socket (my_server.socket, server_side=True, keyfile=ssl_key_file, certfile=ssl_cert_file)
 
