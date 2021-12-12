@@ -6,6 +6,7 @@ from database.database import database
 
 import re
 
+
 host = ''
 port = 53
 size = 512

@@ -21,39 +21,37 @@ payloads = [
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
+        try:
+            match = re.match(r"^[a-zA-Z0-9]{32}$", self.path[1:])
+            if self.path == "/":
+                self.path = "index.html"
+                return http.server.SimpleHTTPRequestHandler.do_GET(self)
+            elif self.path == "/generate.js":
+                return http.server.SimpleHTTPRequestHandler.do_GET(self)
+            elif self.path == "/log4j.png":
+                return http.server.SimpleHTTPRequestHandler.do_GET(self)
+            elif match:
+                self.send_response(200)
+                self.send_header("Content-type", "text/html")
+                self.end_headers()
+                uri=self.path[1:]
+                domain = uri+"."+dnsserver
+                print("[WEB] Unique domain retrieved: "+uri)
 
-        match = re.match(r"^[a-zA-Z0-9]{32}$", self.path[1:])
-        if self.path == "/":
-            self.path = "index.html"
-            return http.server.SimpleHTTPRequestHandler.do_GET(self)
-        elif self.path == "/generate.js":
-            return http.server.SimpleHTTPRequestHandler.do_GET(self)
-        elif self.path == "/favicon.ico":
-            return http.server.SimpleHTTPRequestHandler.do_GET(self)
-        elif self.path == "/log4j.png":
-            return http.server.SimpleHTTPRequestHandler.do_GET(self)
-        elif match:
-            self.send_response(200)
-            self.send_header("Content-type", "text/html")
-            self.end_headers()
-            uri=self.path[1:]
-            domain = uri+"."+dnsserver
-            print("[WEB] Unique domain retrieved: "+uri)
-
-            result = "ERROR"
-            domain_found = self.get_entry(domain)
-            if domain_found:
-                result = '<div style="color:red;"><b>'
-                result += '!!! A callback has received, the application where you pasted the payload is VULNERABLE'
-                result += '</b></div>'
-            else:
-                result = '<div style="color:green;">'
-                result += "There was no callback from your payload received (yet)."
-                result += '</div>'
-            payload_html =""
-            for payload in payloads:
-                payload_html += payload.replace("<domain>",domain)+"<br/>"
-            html = f"""
+                result = "ERROR"
+                domain_found = self.get_entry(domain)
+                if domain_found:
+                    result = '<div style="color:red;"><b>'
+                    result += '!!! A callback has received, the application where you pasted the payload is VULNERABLE'
+                    result += '</b></div>'
+                else:
+                    result = '<div style="color:green;">'
+                    result += "There was no callback from your payload received (yet)."
+                    result += '</div>'
+                payload_html =""
+                for payload in payloads:
+                    payload_html += payload.replace("<domain>",domain)+"<br/>"
+                html = f"""
 
 <!DOCTYPE html>
 <html>
@@ -93,10 +91,14 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     </html>
 """
 
-            self.wfile.write(bytes(html, "utf8"))
-            return
-        else:
-            self.wfile.write(bytes("404", "utf8"))
+                self.wfile.write(bytes(html, "utf8"))
+                return
+            else:
+                self.wfile.write(bytes("404", "utf8"))
+                return
+        except Exception as e:
+            print(e)
+            self.wfile.write(bytes("500", "utf8"))
             return
 
     def get_entry(self, entry):
