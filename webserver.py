@@ -80,6 +80,12 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     <div class="container">
 
     <h1>Unique string: {uri}</h1>
+    <br/></br>
+    <b>The application that you are trying to test has to be able to resolve {domain}, otherwise this test will not be reliable!</b> 
+    <br/>
+    You can test this by generating a unique payload and run: <br/>
+    <code>dig {domain}</code><br/>
+    The page should show the message that the application is vulnerable.<br/><br/>
     Paste a combination of these payloads in your apps, think about fields and locations that you know/think log4j would log about:
     <br/><br/>
     {payload_html}
@@ -87,8 +93,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     {result}
     <br/>
     It can take a couple of minutes before the results have been processed. (Page auto-refreshes every 30 seconds)
-    <br/>
-    Note that if you have not yet pasted these payloads in any of your applications, and it already tells you it is vulnerable, please regenerate the payloads via the main page!
+    <br/><br/>
+    If you did not yet pasted these payloads in your applications, and it already tells you it is vulnerable, please regenerate the payloads via the main page!
     </div>
     </body>
     </html>
