@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="keywords" content="Log4j Self assessment tool" />
+    <meta name="description" content="Log4j self assessment tool" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Log4j Self assessment tool" />
+    <meta property="og:title" content="Log4j Self assessment tool" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="./log4j.png" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <script src="generate.js"></script>
+    <title>
+      Log4j Self assessment tool
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Log4j Self assessment tool</h1>
+      <hr />
+	  <img src="./log4j.png" width="400px" alt="Log4j CVE" />
+	  <p></p>
+      <h2>What?</h2>
+      <p>
+        Use this tool for quick self assessment regarding the log4j vulnerability.
+      </p>
+      <h2>How?</h2>
+      <p>
+	  Use the payloads generated via the button below for any user input that is passed through log4j at any point. If at any point a reply comes in, you are still vulnerable and need to implement fixes.
+      </p>
+	<button id="generate" onclick="doGenerate();">Generate payloads</button>	  
+    </div>
+  </body>
+</html>
