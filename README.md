@@ -20,7 +20,7 @@ Quick Start
 Clone the master branch, install the requirements and run.
 
 ```
-git clone https://github.com/Retrospected/log4shell-selftest; cd log4shell-selftest
+git clone https://github.com/Retrospected/log4shell_selftest; cd log4shell_selftest
 sudo pip3 install -r requirements.txt
 sudo python3 webserver.py <domain of dns server> <path with TLS files>
 sudo python3 dnsserver.py
