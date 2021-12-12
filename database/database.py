@@ -63,9 +63,10 @@ class database:
         cursor = self.cursor
         lookupQuery = 'SELECT entry FROM dnslogs WHERE entry=\'{entryValue}\''.format(entryValue=entry)
         lookupResult = cursor.execute(lookupQuery).fetchall()
+        self.commit()
 
         if len(lookupResult) == 0:
-            print("[DB] No entry found for web request :"+entry)
+            print("[DB] No entry found for web request: "+entry)
             return False
         else:
             print("[DB] ENTRY FOUND! for web request: "+entry)
