@@ -21,9 +21,9 @@ Clone the master branch, install the requirements and run.
 
 ```
 git clone https://github.com/Retrospected/log4shell-selftest; cd log4shell-selftest
-pip3 install -r requirements
-python3 webserver.py <domain of dns server> <path with TLS files>
-python3 dnsserver.py
+sudo pip3 install -r requirements.txt
+sudo python3 webserver.py <domain of dns server> <path with TLS files>
+sudo python3 dnsserver.py
 ```
 
 Default webserver port: 8443
