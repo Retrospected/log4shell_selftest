@@ -8,8 +8,10 @@ Requirements
 ---------------
 Make sure you point you delegate a subdomain as a name server by using the NS record. This is required to catch any DNS lookups executed by your payload, example:
 
+```
 ns.dnsexample.com. A <ip of your server>
 log4shell.dnsexample.com. NS ns.dnsexample.com.
+```
 
 Additionally this tool requires TLS certificates in order to be used, use LetsEncrypt and provide your "/etc/letsencrypt/live/<domain>" path.
 
