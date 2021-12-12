@@ -131,4 +131,10 @@ if __name__ == "__main__":
 
     my_server.socket = ssl.wrap_socket (my_server.socket, server_side=True, keyfile=ssl_key_file, certfile=ssl_cert_file)
 
-    my_server.serve_forever()
+    try:
+        my_server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+
+    my_server.server_close()
+    print("[MAIN] Server stopped.")

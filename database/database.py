@@ -65,6 +65,8 @@ class database:
         lookupResult = cursor.execute(lookupQuery).fetchall()
 
         if len(lookupResult) == 0:
+            print("[DB] No entry found for web request :"+entry)
             return False
         else:
+            print("[DB] ENTRY FOUND! for web request: "+entry)
             return True
