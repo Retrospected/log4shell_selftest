@@ -26,6 +26,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             if self.path == "/":
                 self.path = "index.html"
                 return http.server.SimpleHTTPRequestHandler.do_GET(self)
+            elif self.path == "/index.html":
+                return http.server.SimpleHTTPRequestHandler.do_GET(self)
             elif self.path == "/generate.js":
                 return http.server.SimpleHTTPRequestHandler.do_GET(self)
             elif self.path == "/log4j.png":
