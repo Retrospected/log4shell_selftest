@@ -36,7 +36,7 @@ if __name__ == "__main__":
             q = DNSRecord(DNSHeader(id=d.header.id, qr=1, aa=1, ra=1), q=d.q)
             reply = q.reply()
 
-            reply.add_answer(RR(real_question, QTYPE.A,rdata=A("127.0.0.1"),ttl=60))
+            reply.add_answer(RR(real_question, QTYPE.A,rdata=A("127.0.0.1"),ttl=0))
 
             response_packet = reply.pack()
 
