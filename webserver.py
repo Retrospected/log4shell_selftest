@@ -23,7 +23,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         print("[WEB] Incoming GET request to: "+self.path +" coming from: "+str(self.client_address))
         try:
-            if self.path == "/":
+            if self.path == "/" or self.path == "/index.htm":
                 self.path = "index.html"
                 return http.server.SimpleHTTPRequestHandler.do_GET(self)
             elif self.path == "/index.html":
