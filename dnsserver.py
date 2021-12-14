@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import socket
-from dnslib import DNSRecord
+from dnslib import *
 
 from database.database import database
 
@@ -28,8 +28,19 @@ if __name__ == "__main__":
         try:
             data, addr = s.recvfrom(size)
             d = DNSRecord.parse(data)
-        
+            real_question = ""
             for question in d.questions:
-               log(re.findall(r"^;(.*)\..*$", str(question))[0])
+               real_question = re.findall(r"^;(.*)\..*$", str(question))[0]
+               log(real_question)
+
+            q = DNSRecord(DNSHeader(id=d.header.id, qr=1, aa=1, ra=1), q=d.q)
+            reply = q.reply()
+
+            reply.add_answer(RR(real_question, QTYPE.A,rdata=A("127.0.0.1"),ttl=60))
+
+            response_packet = reply.pack()
+
+            s.sendto(response_packet, addr)
+
         except Exception as e:
             print(e)

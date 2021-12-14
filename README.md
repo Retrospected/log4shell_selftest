@@ -26,7 +26,7 @@ sudo python3 webserver.py <domain of dns server> <path with TLS files>
 sudo python3 dnsserver.py
 ```
 
-Default webserver port: 8443
+Default webserver port: 443
 
 Credits
 ---------------

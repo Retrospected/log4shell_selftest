@@ -21,9 +21,8 @@ payloads = [
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
-        print("[WEB] Incoming GET request to: "+self.path)
+        print("[WEB] Incoming GET request to: "+self.path +" coming from: "+str(self.client_address))
         try:
-            print("[WEB] Going into the switch case")
             if self.path == "/":
                 self.path = "index.html"
                 return http.server.SimpleHTTPRequestHandler.do_GET(self)
@@ -148,7 +147,7 @@ if __name__ == "__main__":
 
     db = database(dbfile)
 
-    PORT = 8443
+    PORT = 443
     my_server = socketserver.TCPServer(("", PORT), handler_object)
 
     ssl_key_file = sys.argv[2]+"/privkey.pem"
