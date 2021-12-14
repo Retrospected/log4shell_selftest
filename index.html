@@ -11,9 +11,21 @@
     <meta property="og:title" content="Log4j Self assessment tool" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="./log4j.png" />
-
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <script src="generate.js"></script>
+    <script>
+function doGenerate() { window.location = "./"+returnHash(); };
+
+
+function returnHash(){
+    abc = "abcdefghijklmnopqrstuvwxyz1234567890".split("");
+    var token=""; 
+    for(i=0;i<30;i++){
+         token += abc[Math.floor(Math.random()*abc.length)];
+    }
+    return token; //Will return a 30 bit "hash"
+}
+    </script>
     <title>
       Log4j Self assessment tool
     </title>

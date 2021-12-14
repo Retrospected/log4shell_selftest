@@ -2,6 +2,7 @@
 import http.server
 import socketserver
 import sys
+import socket
 from database.database import database
 import re
 import ssl
@@ -151,6 +152,7 @@ if __name__ == "__main__":
 
     PORT = 443
     my_server = socketserver.TCPServer(("", PORT), handler_object)
+    my_server.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     ssl_key_file = sys.argv[2]+"/privkey.pem"
     ssl_cert_file = sys.argv[2]+"/fullchain.pem"
