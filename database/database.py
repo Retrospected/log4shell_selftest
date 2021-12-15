@@ -49,20 +49,21 @@ class database:
 
     def parse_entry(self, entry):
         cursor = self.cursor
-        lookupQuery = 'SELECT entry FROM dnslogs WHERE entry=\'{entryValue}\''.format(entryValue=entry)
-        lookupResult = cursor.execute(lookupQuery).fetchall()
+        lookupQuery = 'SELECT entry FROM dnslogs WHERE entry=%s'
+        lookupResult = cursor.execute(lookupQuery, (entry, )).fetchall()
 
         if len(lookupResult) == 0:
               print("[DB] New entry: "+entry)
-              cursor.execute("INSERT INTO dnslogs (date_added, entry) VALUES (?,?)", (str(datetime.datetime.now()), entry))
+              data = ((str(datetime.datetime.now()), entry)
+              cursor.execute("INSERT INTO dnslogs (date_added, entry) VALUES (%s,%s)", (str(datetime.datetime.now()), entry))
 
         self.commit()
 
     def get_entry(self, entry):
         print("[DB] Looking up entry based on web request: "+entry)
         cursor = self.cursor
-        lookupQuery = 'SELECT entry FROM dnslogs WHERE entry=\'{entryValue}\''.format(entryValue=entry)
-        lookupResult = cursor.execute(lookupQuery).fetchall()
+        lookupQuery = 'SELECT entry FROM dnslogs WHERE entry=%s'
+        lookupResult = cursor.execute(lookupQuery, (entry, )).fetchall()
         self.commit()
 
         if len(lookupResult) == 0:
