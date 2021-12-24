@@ -1,0 +1,10 @@
+{
+    "dns":{
+        "domain":"log.dnsexample.com"
+    },
+    "mysql":{
+        "user":"log4juser",
+        "passwd":"log4jpass",
+        "db":"log4j"
+    }
+}

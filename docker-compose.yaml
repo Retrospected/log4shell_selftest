@@ -1,0 +1,36 @@
+version: '3'
+services:
+  mysql:
+    image: mariadb
+    volumes:
+      - './mysql:/var/lib/mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql_root_pass
+      MYSQL_DATABASE: log4j
+      MYSQL_USER: log4juser
+      MYSQL_PASSWORD: log4jpass
+    restart: always
+  log4jdns:
+    build:
+        context: .
+        dockerfile: Dockerfile-dns
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+  log4jwww:
+    build:
+        context: .
+        dockerfile: Dockerfile-www
+    volumes:
+      - './www/nginx_conf:/etc/nginx/conf.d'
+      - './www/html:/var/www/html'
+      - './www/cgi-bin:/usr/lib/cgi-bin'
+    ports:
+      - 8080:80
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.50.0/24

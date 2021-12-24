@@ -1,3 +1,2 @@
-*.db
+mysql/*
 __pycache__/
-server.py
