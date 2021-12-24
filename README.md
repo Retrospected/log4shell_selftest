@@ -16,7 +16,7 @@ log.dnsexample.com. NS ns.dnsexample.com.
 Quick Start
 ---------------
 Clone the master branch and modify the domainname of which you configured the above mentioned NS records in config.json.\
-Optionally change the MySQL parameters in the docker-compose.yaml and config.json files.\
+Optionally change the MySQL parameters in the docker-compose.yaml and config.json files, make sure they match.\
 \
 Run the containers via:
 
