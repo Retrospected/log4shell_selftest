@@ -1,0 +1,15 @@
+FROM nginx
+
+RUN apt-get update && apt-get install -y python3 python3-pip fcgiwrap
+RUN pip3 install mysql-connector
+RUN /etc/init.d/fcgiwrap start
+
+
+COPY www/docker-entrypoint.sh /
+RUN mkdir /usr/lib/cgi-bin/
+COPY config.json /
+
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+

@@ -1,0 +1,11 @@
+FROM debian
+
+RUN apt-get update && apt-get install python3 python3-pip -y
+RUN pip3 install dnslib mysql-connector
+
+COPY ./dns /opt/dns/
+COPY config.json /
+COPY dns/docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
