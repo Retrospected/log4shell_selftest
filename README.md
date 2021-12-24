@@ -15,7 +15,10 @@ log.dnsexample.com. NS ns.dnsexample.com.
 
 Quick Start
 ---------------
-Clone the master branch, modify the domainname of which you configured the above mentioned NS records and optionally the mysql parameters and run:
+Clone the master branch and modify the domainname of which you configured the above mentioned NS records in config.json.\
+Optionally change the MySQL parameters in the docker-compose.yaml and config.json files.\
+\
+Run the containers via:
 
 ```
 sudo docker-compose up
@@ -26,4 +29,3 @@ This will setup the webserver on port 8080 and a DNS server on TCP/UDP port 53.
 Credits
 ---------------
 Chen Zhaojun of Alibaba for discovering the vulnerability (CVE-2021-44228)
-
