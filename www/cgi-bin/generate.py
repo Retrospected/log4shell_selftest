@@ -87,11 +87,9 @@ payloads = [
 domain = hash+"."+dnsserver
 
 payload_html= ""
-payload_ip_html = ""
 
 for payload in payloads:
     payload_html += payload.replace("<domain>",domain)+"<br/>"
-#    payload_ip_html += payload.replace("<domain>","10.22.236.10:8080/cb/cb.py?"+hash)+"<br/>"
 
 
 result = "ERROR"
@@ -156,8 +154,6 @@ html_response = """
     Make sure that the entire string is fully pastable in the field, it should <b><u>not</u></b> be shortened.
     <br/><br/>{payload_html}
     <br/>
-    {payload_ip_html}
-    <br/>
     {result}
     <br/>
     It can take a couple of minutes before the results have been processed. (Page auto-refreshes every 30 seconds)
@@ -171,7 +167,6 @@ html_response = """
 html_response = html_response.replace("{hash}", hash)
 html_response = html_response.replace("{domain}", domain)
 html_response = html_response.replace("{payload_html}", payload_html)
-html_response = html_response.replace("{payload_ip_html}", payload_ip_html)
 html_response = html_response.replace("{result}", result)
 
 print(html_response)
